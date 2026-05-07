@@ -1,4 +1,4 @@
-import styles from '../styles/Globals.css';
+import styles from '../styles/Globals.module.css';
 
 const Button = ({
   children,

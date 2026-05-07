@@ -1,4 +1,4 @@
-import styles from '../styles/Globals.css';
+import styles from '../styles/Globals.module.css';
 
 const DividerLabel = ({ label }) => (
   <div className={styles.container}>

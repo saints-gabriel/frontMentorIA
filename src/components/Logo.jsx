@@ -1,4 +1,4 @@
-import styles from '../Styles/Globals.css';
+import styles from '../styles/Globals.module.css';
 import logoSrc from '../assets/Logo.png';
 
 const Logo = () => {

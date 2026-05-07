@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from '../styles/Globals.css';
+import styles from '../styles/Globals.module.css';
 
 const InputField = ({
   label,

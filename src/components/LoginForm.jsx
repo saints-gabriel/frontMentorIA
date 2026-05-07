@@ -2,7 +2,7 @@ import  { useState } from 'react';
 import InputField from './InputField.jsx';
 import Button from './Button.jsx';
 import DividerLabel from './DividerLabel.jsx';
-import styles from '../styles/Globals.css';
+import styles from '../styles/Globals.module.css';
 
 const LoginForm = ({ onLogin, onForgotPassword, onCreateAccount }) => {
   const [email, setEmail] = useState('');
