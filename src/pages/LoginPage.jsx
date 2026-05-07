@@ -1,10 +1,14 @@
 import Logo from '../components/Logo.jsx';
 import LoginForm from '../components/LoginForm.jsx';
+import DividerLabel from '../components/DividerLabel.jsx'; 
+import Button from '../components/Button.jsx'
+import { useNavigate } from "react-router-dom";
 import styles from './LoginPage.module.css';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
   const handleLogin = async ({ email, password }) => {
-    // TODO: integrar com serviço de autenticação
     console.log('Login:', { email, password });
   };
 
@@ -13,13 +17,12 @@ const LoginPage = () => {
   };
 
   const handleCreateAccount = () => {
-    console.log('Criar conta');
+    navigate('/register');
   };
 
   return (
     <div className={styles.page}>
       <div className={styles.card}>
-        {/* Logo — placeholder até o dev adicionar a imagem real */}
         <div className={styles.logoSection}>
           <Logo />
         </div>
@@ -33,6 +36,14 @@ const LoginPage = () => {
           onForgotPassword={handleForgotPassword}
           onCreateAccount={handleCreateAccount}
         />
+
+        <button
+                type="button"
+                className={styles.forgotLink}
+                onClick={handleCreateAccount}
+              >
+                Criar conta
+              </button>
       </div>
     </div>
   );

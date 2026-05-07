@@ -55,7 +55,6 @@ const LoginForm = ({ onLogin, onForgotPassword, onCreateAccount }) => {
         {loading ? 'Entrando...' : 'Entrar'}
       </Button>
 
-      <DividerLabel label="Criar conta" />
     </form>
   );
 };
