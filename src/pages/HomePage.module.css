@@ -1,0 +1,151 @@
+/* Layout principal */
+.page {
+  min-height: 100vh;
+  background: #F7FAFD;
+  box-sizing: border-box;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(26, 58, 92, 0.05);
+}
+
+.logoutButton {
+  background: transparent;
+  border: 1.5px solid #E74C3C;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #E74C3C;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0px 15px;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.navLink {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A3A5C;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: #4A90E2;
+}
+
+/* Main content */
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.section {
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  font-family: 'Nunito', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1A3A5C;
+  margin-bottom: 24px;
+}
+
+/* Cards de aula */
+.aulasList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardAula {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 12px rgba(26, 58, 92, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cardAula:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(26, 58, 92, 0.1);
+}
+
+.aulaInfo {
+  flex: 1;
+}
+
+.aulaTitulo {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1A3A5C;
+  margin: 0 0 4px 0;
+}
+
+.aulaDuracao {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  color: #6B8A9E;
+}
+
+/* Card Mentoria */
+.cardMentoria {
+  background: linear-gradient(135deg, #E8F0FE 0%, #D4E4FC 100%);
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+}
+
+.mentoriaTexto {
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1A3A5C;
+  margin-bottom: 20px;
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+  
+  .nav {
+    gap: 20px;
+  }
+  
+  .sectionTitle {
+    font-size: 22px;
+  }
+  
+  .cardAula {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .cardMentoria {
+    padding: 24px;
+  }
+}
