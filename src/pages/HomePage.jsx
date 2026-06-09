@@ -16,14 +16,12 @@ const HomePage = () => {
   };
 
   const handleFalarMentor = () => {
-    console.log("Falar com mentoria IA");
+    navigate('/ai')
   };
 
   const handleLogout = () => {
-  // Opção 1: Confirmar antes de sair
   const confirmLogout = window.confirm('Tem certeza que deseja sair?');
     
-    // Redirecionar para login
     navigate('/login');
 };
 
