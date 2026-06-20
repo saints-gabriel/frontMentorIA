@@ -1,23 +1,56 @@
 import Logo from '../components/Logo.jsx';
 import Button from '../components/Button.jsx';
+import Chat from '../components/Chat.jsx';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import styles from './AIPage.module.css';
+import { perguntarGemini } from "../services/geminiService.js";
 
 const AIPage = () => {
   const [text, setText] = useState("");
-
-  const handleSend = () => {
-    if (!text.trim()) return;
-    setText("");
-    };
+  const [mensagens, setMensagens] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-  const confirmLogout = window.confirm('Tem certeza que deseja sair?');
+  const handleSend = async () => {
+    if (!text.trim() || loading) return;
+
+    const pergunta = text;
     
-    navigate('/login');
+    setMensagens((prev) => [
+      ...prev,
+      { texto: pergunta, tipo: "enviado" },
+    ]);
+    setText("");
+    setLoading(true);
+
+    try {
+      const respostaIA = await perguntarGemini(pergunta);
+
+      setMensagens((prev) => [
+        ...prev,
+        { texto: respostaIA, tipo: "recebida" },
+      ]);
+    } catch (erro) {
+      console.error(erro);
+      setMensagens((prev) => [
+        ...prev,
+        {
+          texto: "Não consegui responder agora. Tente novamente.",
+          tipo: "recebida",
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleLogout = () => {
+    const confirmLogout = window.confirm('Tem certeza que deseja sair?');
+    if (confirmLogout) {
+      navigate('/login');
+    }
   };
 
   return (
@@ -40,24 +73,29 @@ const AIPage = () => {
       <main className={styles.main}>
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>MentorIA</h2>
-          
+          <Chat mensagens={mensagens} loading={loading} />
+
           <div className={styles.chatPrompt}>
-          <textarea
-            rows={1}
-            placeholder="Me pergunte qualquer coisa..."
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            onKeyDown={(e) => {
-            if (e.key === "Enter" &&!e.shiftKey) {
-              e.preventDefault();
-              handleSend();
-            }
-            }}
-          /> <br />
- <button className={styles.sendButton} disabled={!text.trim()} onClick={handleSend}>
- ↑
- </button>
- </div>
+            <textarea
+              rows={1}
+              placeholder="Me pergunte qualquer coisa..."
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSend();
+                }
+              }}
+            />
+            <button 
+              className={styles.sendButton} 
+              disabled={!text.trim() || loading} 
+              onClick={handleSend}
+            >
+              ↑
+            </button>
+          </div>
         </section>
       </main>
     </div>
