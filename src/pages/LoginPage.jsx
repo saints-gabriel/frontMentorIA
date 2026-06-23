@@ -1,15 +1,24 @@
 import Logo from '../components/Logo.jsx';
 import LoginForm from '../components/LoginForm.jsx';
-import DividerLabel from '../components/DividerLabel.jsx'; 
-import Button from '../components/Button.jsx'
-import { useNavigate } from "react-router-dom";
+import Button from '../components/Button.jsx';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../services/authService.js';
 import styles from './LoginPage.module.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate('/home');
+  const handleLogin = async ({ email, password }) => {
+    try {
+      const data = await login({ email, password });
+      if (data.token) {
+        localStorage.setItem('authToken', data.token);
+      }
+      navigate('/home');
+    } catch (error) {
+      console.error('Erro ao entrar:', error);
+      alert(error.message || 'Não foi possível fazer login.');
+    }
   };
 
   const handleForgotPassword = () => {
