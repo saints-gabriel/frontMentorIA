@@ -9,10 +9,10 @@ const Chat = ({ mensagens = [], loading = false }) => {
   }, [mensagens, loading]);
 
   return (
-    <div style={{ padding: '10px', maxHeight: '400px', minWidth: '700px', overflowY: 'auto' }}>
+    <div style={{ padding: '10px', maxHeight: '400px', width: '100%', overflowY: 'auto' }}>
       
       {mensagens.length === 0 && (
-        <div style={{ textAlign: 'center', opacity: 0.5, marginTop: '20px' }}>
+        <div style={{ textAlign: 'left', opacity: 0.5, marginTop: '20px' }}>
           <p>Olá! Como posso ajudar você hoje?</p>
         </div>
       )}
@@ -22,7 +22,7 @@ const Chat = ({ mensagens = [], loading = false }) => {
           key={index}
           style={{
             display: 'flex',
-            justifyinit: msg.tipo === "enviado" ? 'flex-end' : 'flex-start',
+            justifyContent: msg.tipo === "enviado" ? 'flex-end' : 'flex-start',
             margin: '10px 0'
           }}
         >
@@ -32,13 +32,30 @@ const Chat = ({ mensagens = [], loading = false }) => {
               color: "#fff",
               padding: "10px 15px",
               borderRadius: "15px",
-              maxWidth: "80%"
+              maxWidth: "80%",
+              textAlign: 'left'
             }}
           >
             {msg.tipo === "enviado" ? (
-              <p style={{ margin: 0, whiteSpace: 'pre-wrap' }}>{msg.texto}</p>
+              <p style={{ margin: 0, whiteSpace: 'pre-wrap', textAlign: 'left'}}>{msg.texto}</p>
             ) : (
-              <ReactMarkdown>{msg.texto}</ReactMarkdown>
+              <ReactMarkdown
+  components={{
+    p: ({ children }) => (
+      <p
+        style={{
+          margin: 0,
+          whiteSpace: "pre-wrap",
+          textAlign: 'left'
+        }}
+      >
+        {children}
+      </p>
+    )
+  }}
+>
+  {msg.texto}
+</ReactMarkdown>
             )}
           </div>
         </div>

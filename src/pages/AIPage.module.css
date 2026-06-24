@@ -1,16 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding: 20px 40px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(26, 58, 92, 0.05);
+  flex-wrap: wrap; 
+}
 .page {
   min-height: 100vh;
   background: #F7FAFD;
   box-sizing: border-box;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background: white;
-  box-shadow: 0 2px 8px rgba(26, 58, 92, 0.05);
 }
 
 .logoutButton {
@@ -19,7 +19,7 @@
   border-radius: 8px;
   padding: 8px 20px;
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem; 
   font-weight: 600;
   color: #E74C3C;
   cursor: pointer;
@@ -30,71 +30,83 @@
 .nav {
   display: flex;
   gap: 32px;
+  flex-wrap: wrap;
+}
+
+.userMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: left;
+  max-width: 80%;
+  width: 100%;
+  margin-left: auto;
+  box-sizing: border-box;
 }
 
 .chatPrompt {
- display: flex;
- align-items: center;
- gap: 8px;
- padding: 12px 16px;
- border-radius: 10px;
- background: #ffffff;
- border: 1px solid #e0e0e0;
- max-width: 720px;
- width: 100%;
- box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  max-width: 720px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .chatPrompt:focus-within {
- border-color: #4f7cff;
- box-shadow: 0 0 0 3px rgba(79, 124, 255, 0.15);
+  border-color: #4f7cff;
+  box-shadow: 0 0 0 3px rgba(79, 124, 255, 0.15);
 }
 
 .chatPrompt input,
 .chatPrompt textarea {
- flex: 1;
- border: none;
- outline: none;
- font-size: 15px;
- font-family: inherit;
- background: transparent;
- resize: none;
- line-height: 1.5;
- color: #1a1a1a;
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.9375rem; /* 15px em rem */
+  font-family: inherit;
+  background: transparent;
+  resize: none;
+  line-height: 1.5;
+  color: #1a1a1a;
 }
 
 .chatPrompt input::placeholder,
 .chatPrompt textarea::placeholder {
- color: #9e9e9e;
+  color: #9e9e9e;
 }
 
 .sendButton {
- display: flex;
- align-items: center;
- justify-content: center;
- width: 36px;
- height: 36px;
- border-radius: 12%;
- border: none;
- background: #4f7cff;
- color: #fff;
- cursor: pointer;
- flex-shrink: 0;
- transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12%;
+  border: none;
+  background: #4f7cff;
+  color: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
 }
 
 .sendButton:hover {
- background: #3b64d4;
+  background: #3b64d4;
 }
 
 .sendButton:disabled {
- background: #d0d0d0;
- cursor: not-allowed;
+  background: #d0d0d0;
+  cursor: not-allowed;
 }
 
 .navLink {
   font-family: 'Nunito', sans-serif;
-  font-size: 16px;
+  font-size: 1rem; /* 16px em rem */
   font-weight: 600;
   color: #1A3A5C;
   text-decoration: none;
@@ -109,7 +121,9 @@
 .main {
   max-width: 800px;
   margin: 0 auto;
+  width: 100%;
   padding: 32px 24px;
+  box-sizing: border-box;
 }
 
 .section {
@@ -118,34 +132,53 @@
 
 .sectionTitle {
   font-family: 'Nunito', sans-serif;
-  font-size: 28px;
+  font-size: clamp(1.375rem, 4vw, 1.75rem); /* fluido entre 22px e 28px */
   font-weight: 700;
   color: #1A3A5C;
   margin-bottom: 24px;
 }
 
+/* ===========================================================
+   MEDIA QUERIES — mantidas e levemente ajustadas
+   =========================================================== */
 @media (max-width: 640px) {
   .header {
     flex-direction: column;
     gap: 16px;
     padding: 16px 20px;
   }
-  
+
   .nav {
     gap: 20px;
   }
-  
+
   .sectionTitle {
-    font-size: 22px;
+    font-size: clamp(1.125rem, 5vw, 1.375rem);
   }
-  
+
   .cardAula {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     gap: 12px;
   }
-  
+
   .cardMentoria {
     padding: 24px;
+  }
+
+  .userMessage,
+  .chatPrompt {
+    max-width: 100%;
+  }
+}
+
+/* Extra: telas muito pequenas (ex: celulares estreitos) */
+@media (max-width: 380px) {
+  .header {
+    padding: 12px 16px;
+  }
+
+  .main {
+    padding: 20px 16px;
   }
 }
