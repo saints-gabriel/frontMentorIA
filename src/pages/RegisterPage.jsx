@@ -1,18 +1,24 @@
 import Logo from '../components/Logo.jsx';
-import LoginForm from '../components/LoginForm.jsx';
-import { useNavigate } from "react-router-dom";
-import Button from '../components/Button.jsx'
+import RegisterForm from '../components/RegisterForm.jsx';
+import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button.jsx';
+import { register } from '../services/authService.js';
 import styles from './RegisterPage.module.css';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
 
   const handleRegister = async ({ nome, email, password }) => {
-    console.log('Register:', { nome, email, password });
-  };
-
-  const handleCreateAccount = () => {
-    console.log('Criar conta');
+    try {
+      const data = await register({ nome, email, password });
+      if (data.token) {
+        localStorage.setItem('authToken', data.token);
+      }
+      navigate('/home');
+    } catch (error) {
+      console.error('Erro ao registrar:', error);
+      alert(error.message || 'Não foi possível criar a conta.');
+    }
   };
 
   const handleLoginAccount = () => {
@@ -22,7 +28,6 @@ const RegisterPage = () => {
   return (
     <div className={styles.page}>
       <div className={styles.card}>
-        {/* Logo — placeholder até o dev adicionar a imagem real */}
         <div className={styles.logoSection}>
           <Logo />
         </div>
@@ -31,13 +36,9 @@ const RegisterPage = () => {
           Crie sua conta para entrar na plataforma
         </h1>
 
-        <LoginForm
-          onRegister={handleRegister}
-          onCreateAccount={handleCreateAccount}
-        />
+        <RegisterForm onRegister={handleRegister} />
 
-        <Button
-        onClick={handleLoginAccount}>
+        <Button onClick={handleLoginAccount}>
           Já tem uma conta? Entre!
         </Button>
       </div>
