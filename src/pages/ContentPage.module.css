@@ -1,0 +1,119 @@
+.container{
+    display:flex;
+    min-height:100vh;
+    background:#101114;
+    color:#fff;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:330px;
+    background:#18191d;
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+    border-right:1px solid #2c2d31;
+}
+
+.logoArea{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.logoArea h2{
+    font-size:22px;
+    font-weight:700;
+}
+
+.lessonList{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:20px;
+}
+
+.lessonCard{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    border:none;
+    background:#232428;
+    color:white;
+    border-radius:12px;
+    padding:16px;
+    cursor:pointer;
+    transition:.2s;
+    text-align:left;
+}
+
+.lessonCard:hover{
+    background:#2c2d31;
+}
+
+.active{
+    background:#2d5fff;
+}
+
+.icon{
+    font-size:18px;
+}
+
+.progressBox{
+    margin-top:auto;
+}
+
+.progressBar{
+    width:100%;
+    height:10px;
+    background:#2c2d31;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0;
+}
+
+.progress{
+    height:100%;
+    background:#4f7dff;
+}
+
+/* Conteúdo */
+
+.content{
+    flex:1;
+    padding:50px;
+    display:flex;
+    flex-direction:column;
+}
+
+.description{
+    margin-top:20px;
+    font-size:17px;
+    line-height:1.7;
+}
+
+.material{
+    margin-top:40px;
+}
+
+.materialArea{
+    margin-top:20px;
+    min-height:420px;
+    border:2px dashed #3a3c42;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#9b9b9b;
+    padding:40px;
+    text-align:center;
+}
+
+.footerButtons{
+    display:flex;
+    justify-content:space-between;
+    margin-top:40px;
+}
