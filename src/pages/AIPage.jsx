@@ -4,7 +4,6 @@ import Chat from '../components/Chat.jsx';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import styles from './AIPage.module.css';
-import { perguntarGemini } from "../services/geminiService.js";
 
 const AIPage = () => {
   const [text, setText] = useState("");
@@ -14,37 +13,48 @@ const AIPage = () => {
   const navigate = useNavigate();
 
   const handleSend = async () => {
-    if (!text.trim() || loading) return;
+  if (!text.trim() || loading) return;
 
-    const pergunta = text;
-    
+  const pergunta = text;
+  setMensagens((prev) => [
+    ...prev,
+    { texto: pergunta, tipo: "enviado" },
+  ]);
+  setText("");
+  setLoading(true);
+
+  try {
+    const response = await fetch("http://localhost:3000/gemini/pergunta", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ pergunta }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro na requisição: ${response.status}`);
+    }
+
+    const data = await response.json();
+
     setMensagens((prev) => [
       ...prev,
-      { texto: pergunta, tipo: "enviado" },
+      { texto: data.resposta, tipo: "recebida" },
     ]);
-    setText("");
-    setLoading(true);
-
-    try {
-      const respostaIA = await perguntarGemini(pergunta);
-
-      setMensagens((prev) => [
-        ...prev,
-        { texto: respostaIA, tipo: "recebida" },
-      ]);
-    } catch (erro) {
-      console.error(erro);
-      setMensagens((prev) => [
-        ...prev,
-        {
-          texto: "Não consegui responder agora. Tente novamente.",
-          tipo: "recebida",
-        },
-      ]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (erro) {
+    console.error(erro);
+    setMensagens((prev) => [
+      ...prev,
+      {
+        texto: "Não consegui responder agora. Tente novamente.",
+        tipo: "recebida",
+      },
+    ]);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleLogout = () => {
     const confirmLogout = window.confirm('Tem certeza que deseja sair?');

@@ -46,7 +46,6 @@ export default function LearningTrail() {
       <aside className={styles.sidebar}>
         <div className={styles.logoArea}>
           <Logo />
-          <h2>Mentor IA+</h2>
         </div>
 
         <DividerLabel label="Trilha de Aprendizado" />
@@ -88,7 +87,7 @@ export default function LearningTrail() {
       </aside>
 
       <main className={styles.content}>
-        <h1>{conteudo.titulo}</h1>
+        <h1 className={styles.blackFont}>{conteudo.titulo}</h1>
 
         <DividerLabel label="Conteúdo da Aula" />
 

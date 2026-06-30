@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import AIPage from './pages/AIPage.jsx'
+import ContentPage from './pages/ContentPage.jsx'
 import './App.css'
 import styles from './styles/Globals.module.css'
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/ai" element={<AIPage />} />
+        <Route path="content" element={<ContentPage />}/>
       </Routes>
     </Router>
   );
