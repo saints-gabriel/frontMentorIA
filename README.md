@@ -1,16 +1,27 @@
-# React + Vite
+# MENTOR(IA)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O aplicativo criado em React foi feito com a função de auxiliar os estudos de alunos com uma Inteligência Artificial imbutida no sistema.
 
-Currently, two official plugins are available:
+## Instalação
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Para rodar o aplicativo, deve-se instalar os pacotes via:
 
-## React Compiler
+`npm i`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Tanto para o backend quanto para o frontend.
 
-## Expanding the ESLint configuration
+Além de preparar as variáveis de banco de dados, chave API e porta de execução no .env do backend.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Execução
+
+Na pasta dos projetos, abra um terminal dedicado para cada e rode o comando:
+
+`npm run dev`
+
+Este comando serve tanto para o front quando para o backend.
+
+Feito isso, seu projeto está pronto para utilizar!
+
+*Bons estudos e utilize a IA de forma responsável.*
+
+Project by saints-gabriel & 
