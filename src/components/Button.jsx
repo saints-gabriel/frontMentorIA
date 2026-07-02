@@ -14,7 +14,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
       className={[
-        styles.btn,
+        styles.button,
         styles[variant],
         fullWidth ? styles.fullWidth : '',
         disabled ? styles.disabled : '',

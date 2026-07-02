@@ -21,7 +21,7 @@ export async function login({ email, password }) {
 }
 
 export async function register({ nome, email, password }) {
-  const response = await fetch(`${baseUrl}/auth/register`, {
+  const response = await fetch(`${baseUrl}/auth/cadastro`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

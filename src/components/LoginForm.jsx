@@ -51,7 +51,7 @@ const LoginForm = ({ onLogin, onForgotPassword, onCreateAccount }) => {
         Esqueci a senha
       </button>
 
-      <Button type="submit" variant="primary" fullWidth disabled={loading}>
+      <Button className={styles.button} type="submit" variant="primary" fullWidth disabled={loading}>
         {loading ? 'Entrando...' : 'Entrar'}
       </Button>
 

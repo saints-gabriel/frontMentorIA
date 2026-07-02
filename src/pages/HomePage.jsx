@@ -1,48 +1,28 @@
 import Logo from '../components/Logo.jsx';
 import Button from '../components/Button.jsx';
-import { useNavigate } from "react-router-dom";
+import { Header } from '../components/Header.jsx';
+import { useNavigate } from 'react-router-dom';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
+
+  const handleAssistirAula = (aulaId) => {
+      navigate('/content');
+  };
+
+  const handleFalarMentor = () => {
+      navigate('/ai')
+  };
 
   const aulas = [
     { id: 1, titulo: "Introdução ao Lorem Ipsum", duracao: "15 min" },
     { id: 2, titulo: "Tags Lorem Ipsum", duracao: "26 min" }
   ];
 
-  const handleAssistirAula = (aulaId) => {
-    console.log(`Assistir aula ${aulaId}`);
-  };
-
-  const handleFalarMentor = () => {
-    navigate('/ai')
-  };
-
-  const handleLogout = () => {
-  const confirmLogout = window.confirm('Tem certeza que deseja sair?');
-    
-    navigate('/login');
-};
-
   return (
     <div className={styles.page}>
-      {/* Header com menu */}
-      <header className={styles.header}>
-        <Logo className={styles.logo} />
-        <nav className={styles.nav}>
-          <a href="#" className={styles.navLink}>Minhas trilhas</a>
-          <a href="#" className={styles.navLink}>Mentor IA</a>
-          <a href="#" className={styles.navLink}>Perfil</a>
-        </nav>
-        <button 
-          className={styles.logoutButton}
-          onClick={handleLogout}
-        >
-          Sair
-        </button>
-      </header>
-
+      <Header/>
       <main className={styles.main}>
         {/* Seção "O que estudar hoje" */}
         <section className={styles.section}>

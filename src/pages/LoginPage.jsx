@@ -46,13 +46,12 @@ const LoginPage = () => {
           onCreateAccount={handleCreateAccount}
         />
 
-        <button
+        <Button className={styles.button}
                 type="button"
-                className={styles.forgotLink}
                 onClick={handleCreateAccount}
               >
                 Criar conta
-              </button>
+              </Button>
       </div>
     </div>
   );

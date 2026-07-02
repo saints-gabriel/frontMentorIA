@@ -27,3 +27,149 @@ body {
   color: var(--color-primary);
   -webkit-font-smoothing: antialiased;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(26, 58, 92, 0.05);
+}
+
+.logoutButton {
+  background: transparent;
+  border: 1.5px solid #E74C3C;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #E74C3C;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0px 15px;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.navLink {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A3A5C;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: #4A90E2;
+}
+
+/* Generic layout */
+.form{
+  max-width: 500px;
+  margin: 28px auto;
+  padding: 20px 18px;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,.05);
+  font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #111;
+}
+
+.form .title{
+  margin: 0 0 14px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.form .field{
+  margin: 12px 0;
+}
+
+.form label{
+  display: block;
+  margin: 0 0 6px;
+  font-weight: 600;
+  color: #222;
+}
+
+.form input{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.16);
+  background: #fff;
+  color:#111;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.form input:focus{
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.18);
+}
+
+.form .row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.forgotLink{
+  display: inline-block;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.forgotLink:hover{
+  text-decoration: underline;
+}
+
+.button{
+  max-width: 100px;
+  width: 100%;
+  margin-top: 14px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 10px 20px rgba(37,99,235,.25);
+  transition: transform .08s ease, filter .15s ease;
+}
+
+.buttonCenter{
+  display: block;
+  margin: 0 auto;
+}
+
+.button:hover{
+  filter: brightness(1.03);
+}
+
+.button:active{
+  transform: translateY(1px);
+}
+
+.button:disabled{
+  cursor: not-allowed;
+  opacity: .65;
+  box-shadow: none;
+}
+

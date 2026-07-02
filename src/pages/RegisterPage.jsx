@@ -38,7 +38,7 @@ const RegisterPage = () => {
 
         <RegisterForm onRegister={handleRegister} />
 
-        <Button onClick={handleLoginAccount}>
+        <Button className={styles.button} onClick={handleLoginAccount}>
           Já tem uma conta? Entre!
         </Button>
       </div>

@@ -1,46 +1,53 @@
 import { useState } from "react";
 import Button from "../components/Button";
 import DividerLabel from "../components/DividerLabel";
-import Logo from "../components/Logo";
 import styles from "./ContentPage.module.css";
+import Logo from '../components/Logo.jsx'
+import { useNavigate } from "react-router-dom";
+
 
 const aulas = [
   {
     id: 1,
     titulo: "Boas-vindas",
     descricao: "Conheça a plataforma e como aproveitar sua trilha.",
-    status: "concluido",
+    status: "atual",
   },
   {
     id: 2,
     titulo: "Introdução ao Front-end",
     descricao:
-      "Nesta aula você aprenderá os conceitos fundamentais do desenvolvimento Front-end.",
+    "Nesta aula você aprenderá os conceitos fundamentais do desenvolvimento Front-end.",
     status: "atual",
   },
   {
     id: 3,
     titulo: "HTML",
     descricao: "Estruturação de páginas web.",
-    status: "pendente",
+    status: "atual",
   },
   {
     id: 4,
     titulo: "CSS",
     descricao: "Estilizando aplicações.",
-    status: "pendente",
+    status: "atual",
   },
   {
     id: 5,
     titulo: "JavaScript",
     descricao: "Lógica e interatividade.",
-    status: "pendente",
+    status: "atual",
   },
 ];
 
 export default function LearningTrail() {
   const [conteudo, setConteudo] = useState(aulas[1]);
-
+  const navigate = useNavigate()
+  
+  const goBack = () => {
+    navigate('/home');
+  }
+  
   return (
     <div className={styles.container}>
       <aside className={styles.sidebar}>
@@ -84,6 +91,11 @@ export default function LearningTrail() {
 
           <span>40% concluído</span>
         </div>
+        <Button
+        className={styles.buttonCenter}
+        onClick={goBack}
+        >Voltar
+        </Button>
       </aside>
 
       <main className={styles.content}>
