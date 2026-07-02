@@ -24,4 +24,4 @@ Feito isso, seu projeto está pronto para utilizar!
 
 *Bons estudos e utilize a IA de forma responsável.*
 
-Project by saints-gabriel & 
+Project by saints-gabriel & JhulianVeloso
