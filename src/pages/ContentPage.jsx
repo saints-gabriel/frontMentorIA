@@ -1,53 +1,62 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import DividerLabel from "../components/DividerLabel";
 import styles from "./ContentPage.module.css";
-import Logo from '../components/Logo.jsx'
+import Logo from '../components/Logo.jsx';
 import { useNavigate } from "react-router-dom";
-
-
-const aulas = [
-  {
-    id: 1,
-    titulo: "Boas-vindas",
-    descricao: "Conheça a plataforma e como aproveitar sua trilha.",
-    status: "atual",
-  },
-  {
-    id: 2,
-    titulo: "Introdução ao Front-end",
-    descricao:
-    "Nesta aula você aprenderá os conceitos fundamentais do desenvolvimento Front-end.",
-    status: "atual",
-  },
-  {
-    id: 3,
-    titulo: "HTML",
-    descricao: "Estruturação de páginas web.",
-    status: "atual",
-  },
-  {
-    id: 4,
-    titulo: "CSS",
-    descricao: "Estilizando aplicações.",
-    status: "atual",
-  },
-  {
-    id: 5,
-    titulo: "JavaScript",
-    descricao: "Lógica e interatividade.",
-    status: "atual",
-  },
-];
+import { getAllClasses } from "../services/classService";
 
 export default function LearningTrail() {
-  const [conteudo, setConteudo] = useState(aulas[1]);
-  const navigate = useNavigate()
-  
+  const [aulas, setAulas] = useState([]);
+  const [conteudo, setConteudo] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const carregarAulas = async () => {
+      try {
+        setLoading(true);
+        setError("");
+        const dados = await getAllClasses();
+
+        if (!isMounted) return;
+
+        setAulas(dados);
+        setConteudo(dados[0] ?? null);
+      } catch (err) {
+        if (!isMounted) return;
+        setError(err.message || "Não foi possível carregar as aulas.");
+        setAulas([]);
+        setConteudo(null);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    carregarAulas();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const currentIndex = aulas.findIndex((aula) => aula.id === conteudo?.id);
+
+  const goToLesson = (index) => {
+    if (!aulas.length) return;
+    const nextIndex = (index + aulas.length) % aulas.length;
+    setConteudo(aulas[nextIndex]);
+  };
+
   const goBack = () => {
     navigate('/home');
-  }
-  
+  };
+
   return (
     <div className={styles.container}>
       <aside className={styles.sidebar}>
@@ -62,15 +71,11 @@ export default function LearningTrail() {
             <button
               key={aula.id}
               className={`${styles.lessonCard} ${
-                conteudo.id === aula.id ? styles.active : ""
+                conteudo?.id === aula.id ? styles.active : ""
               }`}
               onClick={() => setConteudo(aula)}
             >
-              <span className={styles.icon}>
-                {aula.status === "concluido" && "✅"}
-                {aula.status === "atual" && "▶"}
-                {aula.status === "pendente" && "🔒"}
-              </span>
+              <span className={styles.icon}>▶</span>
 
               <div>
                 <strong>{aula.titulo}</strong>
@@ -92,39 +97,75 @@ export default function LearningTrail() {
           <span>40% concluído</span>
         </div>
         <Button
-        className={styles.buttonCenter}
-        onClick={goBack}
-        >Voltar
+          className={styles.buttonCenter}
+          onClick={goBack}
+        >
+          Voltar
         </Button>
       </aside>
 
       <main className={styles.content}>
-        <h1 className={styles.blackFont}>{conteudo.titulo}</h1>
+        {loading && <p className={styles.loadingState}>Carregando aulas...</p>}
+        {error && <p className={styles.errorState}>{error}</p>}
 
-        <DividerLabel label="Conteúdo da Aula" />
+        {!loading && !error && !conteudo && (
+          <p className={styles.loadingState}>Nenhuma aula disponível no momento.</p>
+        )}
 
-        <p className={styles.description}>
-          {conteudo.descricao}
-        </p>
+        {!loading && !error && conteudo && (
+          <>
+            <h1 className={styles.blackFont}>{conteudo.titulo}</h1>
 
-        <div className={styles.material}>
-          <h3>Material</h3>
+            <DividerLabel label="Conteúdo da Aula" />
 
-          <div className={styles.materialArea}>
-            Aqui ficará o vídeo da aula, PDF, exercícios ou qualquer outro
-            conteúdo carregado pela API.
-          </div>
-        </div>
+            <p className={styles.description}>
+              {conteudo.descricao}
+            </p>
 
-        <div className={styles.footerButtons}>
-          <Button variant="secondary">
-            Aula anterior
-          </Button>
+            <div className={styles.material}>
+              <h3>Material</h3>
 
-          <Button>
-            Próxima aula
-          </Button>
-        </div>
+              <div className={styles.materialArea}>
+                {conteudo.videoUrl ? (
+                  <>
+                    <iframe className={styles.videoPlayer} controls src={conteudo.videoUrl} />
+                  </>
+                ) : (
+                  <div className={styles.emptyState}>
+                    <p>Nenhum vídeo disponível para esta aula no momento.</p>
+                    {conteudo.materialUrl && (
+                      <a
+                        className={styles.materialLink}
+                        href={conteudo.materialUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Abrir material complementar
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className={styles.footerButtons}>
+              <Button
+                variant="secondary"
+                onClick={() => goToLesson(currentIndex - 1)}
+                disabled={aulas.length <= 1}
+              >
+                Aula anterior
+              </Button>
+
+              <Button
+                onClick={() => goToLesson(currentIndex + 1)}
+                disabled={aulas.length <= 1}
+              >
+                Próxima aula
+              </Button>
+            </div>
+          </>
+        )}
       </main>
     </div>
   );

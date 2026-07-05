@@ -16,8 +16,7 @@ const HomePage = () => {
   };
 
   const aulas = [
-    { id: 1, titulo: "Introdução ao Lorem Ipsum", duracao: "15 min" },
-    { id: 2, titulo: "Tags Lorem Ipsum", duracao: "26 min" }
+    { id: 1, titulo: "Introdução ao Web", duracao: "15 min" }
   ];
 
   return (
