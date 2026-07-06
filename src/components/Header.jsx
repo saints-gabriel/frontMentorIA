@@ -8,6 +8,7 @@ export const Header = () => {
     const handleLogout = () => {
     const confirmLogout = window.confirm('Tem certeza que deseja sair?');
     
+    localStorage.removeItem('authToken');
     navigate('/login');
 };
     return (

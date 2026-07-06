@@ -22,8 +22,19 @@ const HomePage = () => {
   return (
     <div className={styles.page}>
       <Header/>
+
+      <section className={styles.section}>
+        <div className={styles.cardMentoria}>
+            <p className={styles.mentoriaTexto}>Já fez sua avaliação de estudos?</p>
+            <Button 
+              variant="primary"
+              onClick={handleFalarMentor}
+            >
+              Descubra sua nota!
+            </Button>
+          </div>
+      </section>
       <main className={styles.main}>
-        {/* Seção "O que estudar hoje" */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>O que estudar hoje</h2>
           

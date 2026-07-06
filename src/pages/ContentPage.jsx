@@ -90,11 +90,11 @@ export default function LearningTrail() {
           <div className={styles.progressBar}>
             <div
               className={styles.progress}
-              style={{ width: "40%" }}
+              style={{ width: "0%" }}
             />
           </div>
 
-          <span>40% concluído</span>
+          <span>0% concluído</span>
         </div>
         <Button
           className={styles.buttonCenter}
