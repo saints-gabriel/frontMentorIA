@@ -9,6 +9,9 @@ export const Header = () => {
     const confirmLogout = window.confirm('Tem certeza que deseja sair?');
     
     localStorage.removeItem('authToken');
+    localStorage.removeItem('nome');
+    localStorage.removeItem('email');
+    
     navigate('/login');
 };
     return (
@@ -18,6 +21,7 @@ export const Header = () => {
           <a href="/home" className={styles.navLink}>Home</a>
           <a href="/content" className={styles.navLink}>Minhas trilhas</a>
           <a href="/ai" className={styles.navLink}>Mentor IA</a>
+          <a href="/perfil" className={styles.navLink}>Perfil</a>
         </nav>
         <button 
           className={styles.logoutButton}

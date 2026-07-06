@@ -28,7 +28,6 @@ const HomePage = () => {
             <p className={styles.mentoriaTexto}>Já fez sua avaliação de estudos?</p>
             <Button 
               variant="primary"
-              onClick={handleFalarMentor}
             >
               Descubra sua nota!
             </Button>

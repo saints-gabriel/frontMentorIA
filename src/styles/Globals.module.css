@@ -173,3 +173,7 @@ body {
   box-shadow: none;
 }
 
+.userImage{
+  align-self: center;
+  max-width: 100px;
+}

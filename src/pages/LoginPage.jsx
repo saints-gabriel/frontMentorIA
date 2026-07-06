@@ -11,9 +11,9 @@ const LoginPage = () => {
   const handleLogin = async ({ email, password }) => {
     try {
       const data = await login({ email, password });
-      if (data.token) {
-        localStorage.setItem('authToken', data.token);
-      }
+        localStorage.setItem('authToken', data.jwtoken);
+        localStorage.setItem('nome', data.usuario.nome);
+        localStorage.setItem('email', data.usuario.email);
       navigate('/home');
     } catch (error) {
       console.error('Erro ao entrar:', error);
